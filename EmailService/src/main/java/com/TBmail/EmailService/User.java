@@ -2,6 +2,7 @@ package com.TBmail.EmailService;
 
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -23,9 +24,7 @@ public class User {
 	@NonNull
     @Id
     private String id;
-	
-	private static int counter=0;
-	
+		
 	@NonNull
     @Field("uid")
     private String uid;
@@ -47,7 +46,7 @@ public class User {
 	}
 
 	public User() {
-		this.uid=Integer.toString(counter++);
+		this.uid=generateUniqueId();
 	}
 
 	@Override
@@ -55,5 +54,13 @@ public class User {
 		return "User [uid=" + uid + ", eMail=" + eMail + ", categoryUrl=" + categoryUrl + ", lastSentUrl=" + lastSentUrl
 				+ "]";
 	}
+	private static String generateUniqueId() {
+	    // Create a random UUID object
+	    UUID uuid = UUID.randomUUID();
+	    // Convert it to a string
+	    String uniqueId = uuid.toString();
+	    // Return the unique id
+	    return uniqueId;
+	  }
 }
 

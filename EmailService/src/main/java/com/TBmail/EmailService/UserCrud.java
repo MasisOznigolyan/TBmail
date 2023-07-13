@@ -73,4 +73,9 @@ public class UserCrud{
 	public void deleteUser(String id) {
 		userRepository.deleteById(id);
     }
+	
+	public void deleteAllUsers() {
+	    userRepository.deleteAll();
+	}
+	
 }
